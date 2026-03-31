@@ -79,9 +79,9 @@
         <div class="row gy-4 align-items-center">
           <div class="col-lg-6 order-2 order-lg-1">
             <div class="hero-content">
-              <h1 data-aos="fade-up" data-aos-delay="200">Hola, mi nombre es <span class="highlight">Luis Salgado</span></h1>
-              <h2 data-aos="fade-up" data-aos-delay="300"> <span class="typed" data-typed-items="Desarrollador Python"></span></h2>
-              <p data-aos="fade-up" data-aos-delay="400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <h1 data-aos="fade-up" data-aos-delay="200">Hola, mi nombre es <span class="highlight" id="name"></span></h1>
+              <h2 data-aos="fade-up" data-aos-delay="300"> <span class="typed" id="role"></span></h2>
+              <p data-aos="fade-up" data-aos-delay="400" id="description"></p>
               <div class="hero-actions" data-aos="fade-up" data-aos-delay="500">
                 <a href="portfolio.html" class="btn btn-primary">View My Work</a>
                 <a href="contact.html" class="btn btn-outline">Get In Touch</a>
@@ -166,6 +166,26 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+  fetch('/data/home.json')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('name').innerText = data.name;
+      document.getElementById('description').innerText = data.description;
+
+      // IMPORTANTE: typed.js usa atributo especial
+      const typedElement = document.getElementById('role');
+      typedElement.setAttribute('data-typed-items', data.role);
+
+      new Typed('.typed', {
+        strings: [data.role],
+        typeSpeed: 100,
+        backSpeed: 50,
+        loop: true
+      });
+    });
+</script>
 
 </body>
 
