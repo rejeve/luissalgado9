@@ -1,0 +1,17 @@
+media: assets/img
+
+content:
+  - name: home
+    label: Home
+    type: file
+    path: data/home.json
+    fields:
+      - name: name
+        label: Nombre
+        type: string
+      - name: role
+        label: Rol (typed text)
+        type: string
+      - name: description
+        label: Descripción
+        type: text
